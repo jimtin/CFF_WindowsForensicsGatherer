@@ -11,13 +11,13 @@ ADD https://github.com/jimtin/CFF_WindowsForensicsGatherer/archive/master.zip /W
 RUN Expand-Archive -Path C:\\WindowsForensicsGatherer.zip
 
 # Set the working directory to be where the powershell script is
-WORKDIR C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master
+# WORKDIR C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master
 
 # Set up the Environment Variables for Target and Playbook
 ENV Target NoTarget
 ENV Playbook NoPlaybook
 
-RUN Get-ChildItem C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master
+RUN Get-Content C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\runcommand.ps1
 
 # Load powershell commands into memory space then execute the commands on the target
 CMD C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\runcommand.ps1 Target Playbook
