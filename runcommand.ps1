@@ -6,4 +6,5 @@ $message = "Running playbook " + $playbook + " against " + $target
 Write-Information -InformationAction Continue -MessageData $message
 
 # Get the current IP address
-Get-NetIPAddress
+$ipaddress = Get-NetIPAddress
+Write-Host $ipaddress
