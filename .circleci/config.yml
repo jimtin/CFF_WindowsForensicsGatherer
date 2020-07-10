@@ -13,5 +13,5 @@ jobs:
     steps:
       # Run tests
       - run:
-        name: run tests
-        command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
+          name: run tests
+          command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
