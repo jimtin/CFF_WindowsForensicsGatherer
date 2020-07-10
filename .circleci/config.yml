@@ -1,19 +1,31 @@
+# State the version of CircleCI to use
 version: 2.1
 
+# Select the windows Orb, which also includes Docker
 orbs:
   win: circleci/windows@2.4.0
 
+# Run the testing
 jobs:
   build:
+    # Set up executor
     executor:
       name: win/default
       shell: powershell.exe
     steps:
+        # Checkout the repo
       - checkout
       - run: systeminfo
       - run:
+        # Build the cff_windowsforensicsgatherer docker
           name: "Build CFF_WindowsForensicsGatherer"
           shell: powershell.exe
           command: |
             docker build -t windowsforensicsgatherer .
-            docker run -e Target="NowWeHaveATarget" -e Playbook="NowWeHaveATarget" -t windowsforensicsgatherer
+
+      - run:
+          name: "Set up Windows Server"
+          shell: powershell.exe
+          command: |
+            Enable-PSRemoting -Force
+            Set-Item WSMan:\localhost\Client\TrustedHosts *
