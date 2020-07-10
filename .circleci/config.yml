@@ -1,0 +1,20 @@
+# Select the version of circleci
+version: 2.1
+
+# Set up the windows orb
+orbs:
+    windows: circleci/windows@2.4.0
+
+# Set up the jobs to run
+jobs:
+    build:
+        docker:
+            - image: jimtin/cff_windowsforensicsgatherer:latest
+
+        # Set the working directory
+        working_directory: "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master"
+
+        # Run tests
+        - run:
+            name: run tests
+            command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
