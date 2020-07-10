@@ -24,8 +24,15 @@ jobs:
             docker build -t windowsforensicsgatherer .
 
       - run:
+        # Enable Windows Remoting
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
             Enable-PSRemoting -Force
-            Set-Item WSMan:\\localhost\\Client\\TrustedHosts *
+    
+      -run: 
+        # Run the CI tests script
+        name: "Run CI tests"
+        shell: powershell.exe
+        command: |
+          .\Tests\runCITests.ps1
