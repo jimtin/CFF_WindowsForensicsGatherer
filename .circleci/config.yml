@@ -12,7 +12,8 @@ jobs:
       - checkout
       - run: systeminfo
       - run:
-          name: "Check docker"
+          name: "Build CFF_WindowsForensicsGatherer"
           shell: powershell.exe
           command: |
-            dir
+            docker build -t windowsforensicsgatherer .
+            docker run -e Target="NowWeHaveATarget" -e Playbook="NowWeHaveATarget" -t windowsforensicsgatherer
