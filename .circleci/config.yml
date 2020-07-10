@@ -2,8 +2,8 @@
 version: 2.1
 
 # Set up the windows orb
-orbs:
-    windows: circleci/windows@2.4.0
+#orbs:
+#    windows: circleci/windows@2.4.0
 
 # Set up the jobs to run
 jobs:
