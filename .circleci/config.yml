@@ -7,14 +7,14 @@ orbs:
 
 # Set up the jobs to run
 jobs:
-    build:
-        docker:
-            - image: jimtin/cff_windowsforensicsgatherer:latest
+  build:
+    docker:
+      - image: jimtin/cff_windowsforensicsgatherer
 
-        # Set the working directory
-        working_directory: "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master"
+    # Set the working directory
+    working_directory: "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master"
 
-        # Run tests
-        - run:
-            name: run tests
-            command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
+    # Run tests
+    - run:
+        name: run tests
+        command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
