@@ -1,18 +1,17 @@
+# Set the version
 version: 2.1
 
+# Set up the job to be run on custom image
 jobs:
     build:
       docker:
         - image: jimtin/cff_windowsforensicsgatherer
-#jobs:
-#  build:
-#    docker:
-#      - image: jimtin/cff_windowsforensicsgatherer
 
     # Set the working directory
     working_directory: "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master"
 
-    # Run tests
-    #- run:
-    #  name: run tests
-    #  command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
+    steps:
+      # Run tests
+      - run:
+        name: run tests
+        command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
