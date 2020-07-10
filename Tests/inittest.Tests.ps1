@@ -8,7 +8,7 @@ Describe 'Basic Pester Test'{
 # Test to see if Endpoint Interaction module exists
 Describe "Invoke-HostHunterCommand"{
     It 'Should Exist'{
-        "C:\HostHunter-master\EndpointInteraction\Invoke-HostHunterCommand.psm1" |
+        "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\EndpointInteraction\Invoke-HostHunterCommand.psm1" |
         Should -Exist
     }
 }
