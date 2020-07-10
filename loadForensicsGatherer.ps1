@@ -6,8 +6,5 @@ if($pester -eq $null){
     Import-Module -Name Pester
 }
 
-# Write-Information -InformationAction Continue -MessageData "Pester Installed"
+# Make sure that Windows Remote Management is up and running
 
-$target = $args[0]
-
-Write-Host $target
