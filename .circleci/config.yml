@@ -23,12 +23,13 @@ jobs:
           command: |
             docker build -t windowsforensicsgatherer .
       
-      # Enable Windows Remoting
+      # Set up the Windows Server
       - run:
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
             Enable-PSRemoting -Force
+            Install-Module Pester -Force
     
       # Run the CI tests script
       - run: 
