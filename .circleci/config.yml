@@ -7,9 +7,6 @@ jobs:
       docker:
         - image: jimtin/cff_windowsforensicsgatherer
 
-    # Set the working directory
-    working_directory: "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master"
-
     steps:
       # Run tests
       - run:
