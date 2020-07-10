@@ -13,6 +13,9 @@ RUN Expand-Archive -Path C:\\WindowsForensicsGatherer.zip
 # Enable Powershell Remoting
 RUN Enable-PSRemoting -Force
 
+# Ensure the latest version of Pester is being used
+RUN Update-Module Pester -Force
+
 # Set up the Environment Variables for Target and Playbook
 ENV TARGET NoTarget
 ENV PLAYBOOK NoPlaybook
