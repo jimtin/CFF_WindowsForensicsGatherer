@@ -1,5 +1,5 @@
 # Set the base image to be Microsoft provided Powershell Core image
-FROM mcr.microsoft.com/powershell:7.0.2-windowsservercore-1909
+FROM mcr.microsoft.com/powershell:7.0.2-windowsservercore-1809
 
 # Change the shell to be Powershell Core by default
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop';"]
