@@ -15,5 +15,5 @@ jobs:
           name: "Build CFF_WindowsForensicsGatherer"
           shell: powershell.exe
           command: |
-            docker build -t jimtin/windowsforensicsgatherer .
+            docker build -t windowsforensicsgatherer .
             docker run -e Target="NowWeHaveATarget" -e Playbook="NowWeHaveATarget" -t windowsforensicsgatherer
