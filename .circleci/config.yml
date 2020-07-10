@@ -16,23 +16,23 @@ jobs:
         # Checkout the repo
       - checkout
       - run: systeminfo
+      # Build the cff_windowsforensicsgatherer docker
       - run:
-        # Build the cff_windowsforensicsgatherer docker
           name: "Build CFF_WindowsForensicsGatherer"
           shell: powershell.exe
           command: |
             docker build -t windowsforensicsgatherer .
-
+      
+      # Enable Windows Remoting
       - run:
-        # Enable Windows Remoting
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
             Enable-PSRemoting -Force
     
+      # Run the CI tests script
       - run: 
-        # Run the CI tests script
-        name: "Run CI tests"
-        shell: powershell.exe
-        command: |
-          .\Tests\runCITests.ps1
+          name: "Run CI tests"
+          shell: powershell.exe
+          command: |
+            .\Tests\runCITests.ps1
