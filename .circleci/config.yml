@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@2.2.0
+  win: circleci/windows@2.4.0
 
 jobs:
   build:
@@ -15,5 +15,5 @@ jobs:
           name: "Build CFF_WindowsForensicsGatherer"
           shell: powershell.exe
           command: |
-            docker build -t windowsforensicsgatherer .
+            docker build -t jimtin/windowsforensicsgatherer .
             docker run -e Target="NowWeHaveATarget" -e Playbook="NowWeHaveATarget" -t windowsforensicsgatherer
