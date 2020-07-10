@@ -13,6 +13,6 @@ jobs:
     working_directory: "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master"
 
     # Run tests
-    - run:
-      name: run tests
-      command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
+    #- run:
+    #  name: run tests
+    #  command: Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1"
