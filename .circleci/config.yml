@@ -28,4 +28,4 @@ jobs:
           shell: powershell.exe
           command: |
             Enable-PSRemoting -Force
-            Set-Item WSMan:\localhost\Client\TrustedHosts *
+            Set-Item WSMan:\\localhost\\Client\\TrustedHosts *
