@@ -30,7 +30,7 @@ jobs:
           command: |
             Enable-PSRemoting -Force
     
-      -run: 
+      - run: 
         # Run the CI tests script
         name: "Run CI tests"
         shell: powershell.exe
