@@ -5,10 +5,13 @@ FROM mcr.microsoft.com/powershell:7.0.2-windowsservercore-1809
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 # Add in the CFF_WindowsForensicsGatherer to the container
-ADD https://github.com/jimtin/CFF_WindowsForensicsGatherer/archive/master.zip /WindowsForensicsGatherer.zip
+ADD https://github.com/jimtin/CFF_WindowsForensicsGatherer/archive/Invoke-HostHunterCommandTests.zip /WindowsForensicsGatherer.zip
 
 # Expand the downloaded git repository
 RUN Expand-Archive -Path C:\\WindowsForensicsGatherer.zip
+
+# Rename the file to be the original name
+RUN Rename-Item -Path "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-Invoke-HostHunterCommandTests" -NewName "CFF_WindowsForensicsGatherer-master"
 
 # Enable Powershell Remoting
 RUN Enable-PSRemoting -Force
