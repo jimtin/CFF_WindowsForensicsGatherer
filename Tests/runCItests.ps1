@@ -1,5 +1,5 @@
 # Get the hostname and IP of this endpoint
-$netipaddress = Get-NetIPAddress
+$netipaddress = Get-NetIPAddress | select IPAddress, InterfaceAlias
 
 Write-Host $netipaddress
 
