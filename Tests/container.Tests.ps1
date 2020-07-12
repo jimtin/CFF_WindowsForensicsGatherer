@@ -37,6 +37,7 @@ Describe "Test WinRM"{
 
     # Test against a remote endpoint
     It 'Should work on remote endpoints'{
+        # Test WSMan against the VM hosting this endpoint
         $winrm = Test-WSMan -ComputerName $target -ErrorAction SilentlyContinue
 
         # If WinRM is working on remote endpoing this should return not null

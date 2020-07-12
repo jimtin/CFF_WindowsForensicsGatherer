@@ -29,7 +29,7 @@ jobs:
           shell: powershell.exe
           command: |
             Enable-PSRemoting -Force
-            Install-Module Pester -Force
+            Install-Module Pester -Force -SkipPublisherCheck
     
       # Run the CI tests script
       - run: 
