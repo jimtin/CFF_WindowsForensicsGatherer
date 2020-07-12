@@ -13,7 +13,7 @@ if($playbook -eq "CITests"){
     $target | Out-File "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
 
     # Invoke the test script
-    Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\inittest.Tests.ps1" 
+    Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\container.Tests.ps1" 
 }else{
     Write-Information -InformationAction Continue -MessageData "Invalid playbook selected"
 }

@@ -9,10 +9,17 @@ Describe 'Basic Pester Test'{
     }
 }
 
-# Test to see if Endpoint Interaction module exists
-Describe "Invoke-HostHunterCommand Exists"{
+# Test to see if needed modules and files exist
+Describe "Required files"{
+    # Test for the Invoke-HostHunterCommand module
     It 'Should Exist'{
         "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\EndpointInteraction\Invoke-HostHunterCommand.psm1" |
+        Should -Exist
+    }
+
+    # Test for the Target.txt file
+    It 'Should Exist'{
+        "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\Tests\target.txt" |
         Should -Exist
     }
 }
