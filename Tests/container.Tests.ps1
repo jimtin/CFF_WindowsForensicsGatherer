@@ -26,12 +26,22 @@ Describe "Required files"{
 
 # Test to confirm WinRM on remote machine works
 Describe "Test WinRM"{
+    # Test against this endpoint
     It 'Should be turned on'{
-        # Run the Test-WSMan Command
-        $winrm = Test-WSMan -ComputerName $target -ErrorAction SilentlyContinue
+        # Test WSMan against this instance
+        $winrm = Test-WSMan -ComputerName localhost -ErrorAction SilentlyContinue
 
         # If WinRM is working, this should return not-null
         $winrm | Should -Not -BeNullOrEmpty
     }
+
+    # Test against a remote endpoint
+    It 'Should work on remote endpoints'{
+        $winrm = Test-WSMan -ComputerName $target -ErrorAction SilentlyContinue
+
+        # If WinRM is working on remote endpoing this should return not null
+        $winrm | Should -Not -BeNullOrEmpty
+    }
+
 }
 
