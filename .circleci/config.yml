@@ -33,6 +33,7 @@ jobs:
           shell: powershell.exe
           command: |
             Write-Host $env:USERNAME
+            Write-Host $env:PASSWORD
             
 
       # Build the cff_windowsforensicsgatherer docker
