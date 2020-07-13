@@ -23,9 +23,6 @@ jobs:
       # Checkout the repo
       - checkout
       - run: systeminfo
-      # Echo the context
-      - run: echo $username
-
       # Build the cff_windowsforensicsgatherer docker
       - run:
           name: "Build CFF_WindowsForensicsGatherer"
@@ -40,6 +37,8 @@ jobs:
           command: |
             Enable-PSRemoting -Force
             Install-Module Pester -Force -SkipPublisherCheck
+            New-LocalUser $username -Password $password -FullName "Testing User" -Description "Fake account"
+            Add-LocalGroupMember -Group "Administrators" -Member $username
     
       # Run the CI tests script
       - run: 
