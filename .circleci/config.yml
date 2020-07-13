@@ -26,12 +26,6 @@ jobs:
       - run: 
           name: "Getting a context"
           command: echo $USERNAME
-      # Build the cff_windowsforensicsgatherer docker
-      - run:
-          name: "Build CFF_WindowsForensicsGatherer"
-          shell: powershell.exe
-          command: |
-            docker build -t windowsforensicsgatherer .
       
       # Set up the Windows Server
       - run:
@@ -39,10 +33,14 @@ jobs:
           shell: powershell.exe
           command: |
             Write-Host $USERNAME
-            Enable-PSRemoting -Force
-            Install-Module Pester -Force -SkipPublisherCheck
-            New-LocalUser $USERNAME -Password $PASSWORD -FullName "Testing User" -Description "Fake account"
-            Add-LocalGroupMember -Group "Administrators" -Member $username
+            
+
+      # Build the cff_windowsforensicsgatherer docker
+      - run:
+          name: "Build CFF_WindowsForensicsGatherer"
+          shell: powershell.exe
+          command: |
+            docker build -t windowsforensicsgatherer .
     
       # Run the CI tests script
       - run: 
