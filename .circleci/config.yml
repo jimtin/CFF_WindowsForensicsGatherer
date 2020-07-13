@@ -38,7 +38,7 @@ jobs:
           command: |
             Enable-PSRemoting -Force
             Install-Module Pester -Force -SkipPublisherCheck
-            New-LocalUser $username -Password $password -FullName "Testing User" -Description "Fake account"
+            New-LocalUser $USERNAME -Password $PASSWORD -FullName "Testing User" -Description "Fake account"
             Add-LocalGroupMember -Group "Administrators" -Member $username
     
       # Run the CI tests script
