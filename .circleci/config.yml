@@ -23,7 +23,9 @@ jobs:
       # Checkout the repo
       - checkout
       - run: systeminfo
-      - run: echo $USERNAME
+      - run: 
+          name: "Getting a context"
+          command: echo $USERNAME
       # Build the cff_windowsforensicsgatherer docker
       - run:
           name: "Build CFF_WindowsForensicsGatherer"
@@ -36,6 +38,7 @@ jobs:
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
+            Write-Host $USERNAME
             Enable-PSRemoting -Force
             Install-Module Pester -Force -SkipPublisherCheck
             New-LocalUser $USERNAME -Password $PASSWORD -FullName "Testing User" -Description "Fake account"
