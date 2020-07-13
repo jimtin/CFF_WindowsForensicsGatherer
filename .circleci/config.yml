@@ -5,6 +5,13 @@ version: 2.1
 orbs:
   win: circleci/windows@2.4.0
 
+# Set up the workflow
+workflows:
+  build:
+    jobs:
+      - build:
+          context: cff_context
+
 # Run the testing
 jobs:
   build:
@@ -13,9 +20,12 @@ jobs:
       name: win/default
       shell: powershell.exe
     steps:
-        # Checkout the repo
+      # Checkout the repo
       - checkout
       - run: systeminfo
+      # Echo the context
+      - run: echo $username
+
       # Build the cff_windowsforensicsgatherer docker
       - run:
           name: "Build CFF_WindowsForensicsGatherer"

@@ -1,4 +1,4 @@
-# Get the hostname and IP of this endpoint
+# Get the IP of this endpoint
 $netipaddress = Get-NetIPAddress | Where-Object {$_.InterfaceAlias -eq "Ethernet"}
 $netipaddress = $netipaddress | Where-Object {$_.AddressFamily -eq "IPv4"}
 # Turn it into a string

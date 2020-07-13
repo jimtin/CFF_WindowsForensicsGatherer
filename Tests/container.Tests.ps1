@@ -44,5 +44,22 @@ Describe "Test WinRM"{
         $winrm | Should -Not -BeNullOrEmpty
     }
 
+    # Test the trusted hosts file
+    It 'Should be set to none'{
+        $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
+        $trustedhosts | Should -BeNullOrEmpty
+    }
+    
 }
+
+# Test the Invoke-HostHunterCommand
+Describe "Test credentialled access"{
+    # A raw Invoke-Command
+    It "Invoke-Command should not work with no credentials"{
+        $output = Invoke-Command -ComputerName $target -ScriptBlock{Get-Process} -ErrorAction SilentlyContinue
+        $output | Should -BeNullOrEmpty
+    }
+    }
+
+
 
