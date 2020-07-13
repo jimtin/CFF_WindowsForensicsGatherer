@@ -23,6 +23,7 @@ jobs:
       # Checkout the repo
       - checkout
       - run: systeminfo
+      - run: echo $USERNAME
       # Build the cff_windowsforensicsgatherer docker
       - run:
           name: "Build CFF_WindowsForensicsGatherer"
