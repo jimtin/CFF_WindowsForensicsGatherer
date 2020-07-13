@@ -32,7 +32,7 @@ jobs:
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
-            Write-Host $USERNAME
+            Write-Host $env:USERNAME
             
 
       # Build the cff_windowsforensicsgatherer docker
