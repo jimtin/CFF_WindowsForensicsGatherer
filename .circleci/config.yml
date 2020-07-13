@@ -34,6 +34,7 @@ jobs:
           command: |
             Write-Host $env:USERNAME
             Write-Host $env:PASSWORD
+            Write-Host $env:CFF_USERNAME
             
 
       # Build the cff_windowsforensicsgatherer docker
