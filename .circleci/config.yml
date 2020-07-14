@@ -43,8 +43,8 @@ jobs:
             docker build -t windowsforensicsgatherer .
     
       # Run the CI tests script
-      #- run: 
-      #    name: "Run CI tests"
-      #    shell: powershell.exe
-      #    command: |
-      #      .\Tests\runCITests.ps1
+      - run: 
+          name: "Run CI tests"
+          shell: powershell.exe
+          command: |
+            .\Tests\runCITests.ps1

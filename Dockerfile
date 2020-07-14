@@ -23,5 +23,9 @@ RUN Install-Module Pester -Force
 ENV TARGET NoTarget
 ENV PLAYBOOK NoPlaybook
 
+# Set the Environment Variables for Username and Password
+ENV USER NoUser
+ENV UPASS NoPASS
+
 # Load powershell commands into memory space then execute the commands on the target
-CMD C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\runcommand.ps1 Target Playbook
+CMD C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\runcommand.ps1 TARGET PLAYBOOK USER UPASS
