@@ -9,4 +9,5 @@ Write-Host $netipaddress
 .\Tests\localHost.Tests.ps1
 
 # Pass the computername into the container. It does seem a little recursive in nature but is important
-docker run -e Target=$netipaddress -e Playbook="CITests" -e USER="TestAdministrator" UPASS=$env:COMPUTERNAME -t windowsforensicsgatherer
+$pass = ($env:COMPUTERNAME).ToString()
+docker run -e Target=$netipaddress -e Playbook="CITests" -e USER="TestAdministrator" -e UPASS=$pass -t windowsforensicsgatherer
