@@ -22,15 +22,15 @@ jobs:
     steps:
       # Checkout the repo
       - checkout
-      - run: systeminfo
       
       # Set up the Windows Server
       - run:
+          # Construct the Windows Server. Use environment variables for the testing username and password
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
-            Set-LocalUser -Name $env:USERNAME -Password ""
-            Add-LocalUser -Group "Administrators" -Name $env:USERNAME
+            Set-LocalUser -Name $env:USERNAME -Password $env:COMPUTERNAME
+            Add-LocalGroupMember -Group "Administrators" -Name $env:USERNAME
             Enable-PSRemoting -Force
             Install-Module Pester -Force
             
