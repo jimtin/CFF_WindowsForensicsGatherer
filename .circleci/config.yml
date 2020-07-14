@@ -29,10 +29,12 @@ jobs:
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
-            Set-LocalUser -Name $env:USERNAME -Password $env:COMPUTERNAME
+            $password = ConvertTo-SecureString $env:COMPUTERNAME -asplaintext -force
+            Write-Host $password
+            Set-LocalUser -Name $env:USERNAME -Password $password
             Add-LocalGroupMember -Group "Administrators" -Name $env:USERNAME
-            Enable-PSRemoting -Force
-            Install-Module Pester -Force
+            Enable-PSRemoting -Force 
+            Install-Module Pester -Force -SkipPublisherCheck
             
       # Build the cff_windowsforensicsgatherer docker
       #- run:
