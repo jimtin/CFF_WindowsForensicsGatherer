@@ -36,6 +36,7 @@ jobs:
             Install-Module Pester -Force -SkipPublisherCheck
             Set-Item WSMan:\localhost\Client\trustedhosts * 
             
+            
       # Build the cff_windowsforensicsgatherer docker
       #- run:
       #    name: "Build CFF_WindowsForensicsGatherer"
