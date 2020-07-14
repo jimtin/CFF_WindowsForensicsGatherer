@@ -35,14 +35,14 @@ jobs:
             Enable-PSRemoting -Force 
             Install-Module Pester -Force -SkipPublisherCheck
             Set-Item WSMan:\localhost\Client\trustedhosts * 
-            
+
             
       # Build the cff_windowsforensicsgatherer docker
-      #- run:
-      #    name: "Build CFF_WindowsForensicsGatherer"
-      #    shell: powershell.exe
-      #    command: |
-      #      docker build -t windowsforensicsgatherer .
+      - run:
+          name: "Build CFF_WindowsForensicsGatherer"
+          shell: powershell.exe
+          command: |
+            docker build -t windowsforensicsgatherer .
     
       # Run the CI tests script
       #- run: 
