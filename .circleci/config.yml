@@ -23,11 +23,9 @@ jobs:
       # Checkout the repo
       - checkout
       - run: systeminfo
-      - run:
-          name: "Testing Echo"
-          command: echo "Test"
       - run: 
           name: "Getting a context"
+          shell: powershell.exe
           command: echo $env:CFF_USERNAME
       
       # Set up the Windows Server
@@ -35,7 +33,7 @@ jobs:
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
-            Write-Host $CFF_USERNAME
+            Write-Host $env:CFF_USERNAME
             
 
       # Build the cff_windowsforensicsgatherer docker
