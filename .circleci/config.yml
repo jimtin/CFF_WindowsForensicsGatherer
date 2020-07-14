@@ -34,8 +34,7 @@ jobs:
             Add-LocalGroupMember -Group "Administrators" -Member "TestAdministrator"
             Enable-PSRemoting -Force 
             Install-Module Pester -Force -SkipPublisherCheck
-            $trustedhosts = Get-Item WSMan:\localhost\Client\trustedhosts 
-            Write-Host $trustedhosts
+            Set-Item WSMan:\localhost\Client\trustedhosts * 
             
       # Build the cff_windowsforensicsgatherer docker
       #- run:
