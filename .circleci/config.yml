@@ -23,6 +23,9 @@ jobs:
       # Checkout the repo
       - checkout
       - run: systeminfo
+      - run:
+          name: "Testing Echo"
+          command: echo "Test"
       - run: 
           name: "Getting a context"
           command: echo $CFF_USERNAME
@@ -36,15 +39,15 @@ jobs:
             
 
       # Build the cff_windowsforensicsgatherer docker
-      - run:
-          name: "Build CFF_WindowsForensicsGatherer"
-          shell: powershell.exe
-          command: |
-            docker build -t windowsforensicsgatherer .
+      #- run:
+      #    name: "Build CFF_WindowsForensicsGatherer"
+      #    shell: powershell.exe
+      #    command: |
+      #      docker build -t windowsforensicsgatherer .
     
       # Run the CI tests script
-      - run: 
-          name: "Run CI tests"
-          shell: powershell.exe
-          command: |
-            .\Tests\runCITests.ps1
+      #- run: 
+      #    name: "Run CI tests"
+      #    shell: powershell.exe
+      #    command: |
+      #      .\Tests\runCITests.ps1
