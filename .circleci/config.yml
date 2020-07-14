@@ -23,19 +23,17 @@ jobs:
       # Checkout the repo
       - checkout
       - run: systeminfo
-      - run: 
-          name: "Getting a context"
-          shell: powershell.exe
-          command: echo $env:USERNAME
       
       # Set up the Windows Server
       - run:
           name: "Set up Windows Server"
           shell: powershell.exe
           command: |
-            Write-Host $env:CFF_USERNAME
+            Set-LocalUser -Name $env:USERNAME -Password ""
+            Add-LocalUser -Group "Administrators" -Name $env:USERNAME
+            Enable-PSRemoting -Force
+            Install-Module Pester -Force
             
-
       # Build the cff_windowsforensicsgatherer docker
       #- run:
       #    name: "Build CFF_WindowsForensicsGatherer"
