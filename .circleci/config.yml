@@ -26,7 +26,7 @@ jobs:
       - run: 
           name: "Getting a context"
           shell: powershell.exe
-          command: echo $env:CFF_USERNAME
+          command: echo $env:USERNAME
       
       # Set up the Windows Server
       - run:
