@@ -28,7 +28,7 @@ jobs:
           command: echo "Test"
       - run: 
           name: "Getting a context"
-          command: echo $CFF_USERNAME
+          command: echo $env:CFF_USERNAME
       
       # Set up the Windows Server
       - run:
