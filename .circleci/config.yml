@@ -34,11 +34,11 @@ jobs:
             .\Tests\serversetup.ps1
             
       # Build the cff_windowsforensicsgatherer docker
-      #- run:
-      #    name: "Build CFF_WindowsForensicsGatherer"
-      #    shell: powershell.exe
-      #    command: |
-      #      docker build -t windowsforensicsgatherer .
+      - run:
+          name: "Build CFF_WindowsForensicsGatherer"
+          shell: powershell.exe
+          command: |
+            docker build -t windowsforensicsgatherer .
     
       # Run the CI tests script
       - run: 

@@ -4,9 +4,6 @@ $netipaddress = $netipaddress | Where-Object {$_.AddressFamily -eq "IPv4"}
 # Turn it into a string
 $netipaddress = $netipaddress.ToString()
 
-$location = Get-Location
-Write-Host $location
-
 # Run the local host tests
 Invoke-Pester C:\Users\circleci\project\Tests\localHost.Tests.ps1
 

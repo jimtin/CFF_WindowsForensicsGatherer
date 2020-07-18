@@ -1,6 +1,3 @@
-$version = Get-InstalledModule -Name Pester
-Write-Host $version
-
 # Initial basic test
 Describe 'Basic Pester Test'{
     It 'Should Be true'{
