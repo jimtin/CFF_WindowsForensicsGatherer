@@ -1,3 +1,10 @@
+# Initial basic test
+Describe 'Basic Pester Test'{
+    It 'Should Be true'{
+        $true | Should -Be $true
+    }
+}
+
 # Confirm the version of Pester installed on the base server
 Describe "Pester Version"{
     It 'Should Be Version 5'{
