@@ -4,6 +4,9 @@ $netipaddress = $netipaddress | Where-Object {$_.AddressFamily -eq "IPv4"}
 # Turn it into a string
 $netipaddress = $netipaddress.ToString()
 
+$location = Get-Location
+Write-Host $location
+
 # Run the local host tests
 .\Tests\localHost.Tests.ps1
 
