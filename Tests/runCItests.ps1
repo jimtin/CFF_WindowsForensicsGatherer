@@ -3,7 +3,6 @@ $netipaddress = Get-NetIPAddress | Where-Object {$_.InterfaceAlias -eq "Ethernet
 $netipaddress = $netipaddress | Where-Object {$_.AddressFamily -eq "IPv4"}
 # Turn it into a string
 $netipaddress = $netipaddress.ToString()
-Write-Host $netipaddress
 
 # Run the local host tests
 .\Tests\localHost.Tests.ps1
