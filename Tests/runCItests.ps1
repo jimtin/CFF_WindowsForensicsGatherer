@@ -8,7 +8,7 @@ $location = Get-Location
 Write-Host $location
 
 # Run the local host tests
-.\Tests\localHost.Tests.ps1
+Invoke-Pester C:\Users\circleci\project\Tests\localHost.Tests.ps1
 
 # Pass the computername into the container. It does seem a little recursive in nature but is important
 $pass = ($env:COMPUTERNAME).ToString()
