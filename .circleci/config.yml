@@ -33,7 +33,12 @@ jobs:
             New-LocalUser -Name "TestAdministrator" -Password $password
             Add-LocalGroupMember -Group "Administrators" -Member "TestAdministrator"
             Enable-PSRemoting -Force 
-            Install-Module Pester -Force -SkipPublisherCheck
+      - run:
+          # Confirm the Windows Server is running latest version of Pester
+          name: "Install Pester"
+          shell: powershell.exe
+          command: |
+           Install-Module Pester -Force -SkipPublisherCheck
             
       # Build the cff_windowsforensicsgatherer docker
       - run:
