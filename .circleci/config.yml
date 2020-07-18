@@ -38,8 +38,7 @@ jobs:
           name: "Install Pester"
           shell: powershell.exe
           command: |
-            Install-Module Pester -SkipPublisherCheck -Force
-            Update-Module Pester -Force
+            .\Tests\serversetup.ps1
             
       # Build the cff_windowsforensicsgatherer docker
       #- run:
