@@ -1,6 +1,5 @@
 # Get the target
 $target = Get-Content  "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
-Write-Host $target
 
 # Initial test to see if Pester is working
 Describe 'Basic Pester Test'{
@@ -44,8 +43,14 @@ Describe "Test WinRM"{
         $winrm | Should -Not -BeNullOrEmpty
     }
 
+    # Test credentialed access
+    It 'Using credentials to remote endpoint should return positive result'{
+        # Test WSMan with credentials
+        $winrm = Test-WSMan -ComputerName $target -Credential $creds 
+    }
+
     # Test the trusted hosts file
-    It 'Should be set to none'{
+    It 'TrustedHosts should be set to none'{
         $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
         $trustedhosts | Should -BeNullOrEmpty
     }
@@ -59,7 +64,7 @@ Describe "Test credentialled access"{
         $output = Invoke-Command -ComputerName $target -ScriptBlock{Get-Process} -ErrorAction SilentlyContinue
         $output | Should -BeNullOrEmpty
     }
-    }
+}
 
 
 

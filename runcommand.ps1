@@ -5,6 +5,10 @@ $playbook = $env:PLAYBOOK
 $message = "Running playbook " + $playbook + " against " + $target
 Write-Information -InformationAction Continue -MessageData $message
 
+# Construct the credentails
+# Set the credentials
+$creds = New-Object System.Management.Automation.PSCredential($env:USER, $env:UPASS)
+
 if($playbook -eq "CITests"){
     # Inform user of actions being taken
     Write-Information -InformationAction Continue -MessageData "CI Tests invoked"
