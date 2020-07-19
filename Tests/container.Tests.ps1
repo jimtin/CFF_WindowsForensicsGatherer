@@ -9,6 +9,9 @@ $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
 # Construct the Credential object
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
+$trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
+Write-Host $trustedhosts
+
 # Initial test to see if Pester is working
 Describe 'Basic Pester Test'{
     It 'A test should be true'{
@@ -67,7 +70,6 @@ Describe "Test WinRM"{
     # Test the trusted hosts file
     It 'TrustedHosts should be set to none'{
         $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
-        Write-Host $trustedhosts
         $trustedhosts | Should -BeNullOrEmpty
     }
     
@@ -81,7 +83,7 @@ Describe "Test credential access"{
         $output | Should -BeNullOrEmpty
     }
 
-    # Without changing the TrustedHosts file, this should not work
+    # Without changing the TrustedHosts Registry Key, this should not work
     It "Invoke-Command should not work without changing the TrustedHosts registry key"{
         $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process} -ErrorAction SilentlyContinue
         $output | Should -BeNullOrEmpty
