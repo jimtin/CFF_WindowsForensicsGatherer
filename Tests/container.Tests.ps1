@@ -1,4 +1,4 @@
-$creds = $args[0]
+#$creds = $args[0]
 
 # Get the target
 $target = Get-Content  "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
