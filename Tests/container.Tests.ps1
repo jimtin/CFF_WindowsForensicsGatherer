@@ -66,12 +66,6 @@ Describe "Test WinRM"{
         # If WinRM is working on remote endpoing this should return not null
         $winrm | Should -Not -BeNullOrEmpty
     }
-
-    # Test the trusted hosts file
-    It 'TrustedHosts should be set to none'{
-        $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
-        $trustedhosts | Should -BeNullOrEmpty
-    }
     
 }
 
