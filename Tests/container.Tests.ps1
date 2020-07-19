@@ -25,6 +25,13 @@ Describe "Required files"{
     }
 }
 
+# Test the credentials to make sure they are a secure string
+Describe "Test Credentials"{
+    It 'Should be a SecureString'{
+        ($creds.GetType()).Name | Should -Be "SecureString"
+    }
+}
+
 # Test to confirm WinRM on remote machine works
 Describe "Test WinRM"{
     # Test against this endpoint
