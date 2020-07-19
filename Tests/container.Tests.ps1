@@ -29,12 +29,18 @@ Describe "Required files"{
         "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\Tests\target.txt" |
         Should -Exist
     }
+
+    # Test for the hostname.txt file
+    It 'Should Exist'{
+        "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\Tests\hostname.txt" | 
+        Should -Exist
+    }
 }
 
 # Test the credentials to make sure they are a secure string
 Describe "Test Credentials"{
-    It 'Should be a SecureString'{
-        ($creds.GetType()).Name | Should -Be "SecureString"
+    It 'Should be a PSCredential Object'{
+        ($creds.GetType()).Name | Should -Be "PSCredential"
     }
 }
 
@@ -58,28 +64,29 @@ Describe "Test WinRM"{
         $winrm | Should -Not -BeNullOrEmpty
     }
 
-    # Test credentialed access
-    It 'Using credentials to remote endpoint should return positive result'{
-        # Test WSMan with credentials
-        $winrm = Test-WSMan -ComputerName $target -Credential $creds 
-        $winrm | Should -Not -BeNullOrEmpty
-    }
-
     # Test the trusted hosts file
     It 'TrustedHosts should be set to none'{
         $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
+        Write-Host $trustedhosts
         $trustedhosts | Should -BeNullOrEmpty
     }
     
 }
 
 # Test the Invoke-HostHunterCommand
-Describe "Test credentialled access"{
+Describe "Test credential access"{
     # A raw Invoke-Command
     It "Invoke-Command should not work with no credentials"{
         $output = Invoke-Command -ComputerName $target -ScriptBlock{Get-Process} -ErrorAction SilentlyContinue
         $output | Should -BeNullOrEmpty
     }
+
+    # Without changing the TrustedHosts file, this should not work
+    It "Invoke-Command should not work without changing the TrustedHosts registry key"{
+        $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process} -ErrorAction SilentlyContinue
+        $output | Should -BeNullOrEmpty
+    }
+
 }
 
 
