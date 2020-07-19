@@ -14,8 +14,11 @@ if($playbook -eq "CITests"){
     # Write the Target information to the file
     $target | Out-File "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
 
+    # Write the HostName to a file
+    $env:UPASS | Out-File "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\hostname.txt"
+
     # Invoke the test script
-    Invoke-Pester -Script @{Path="C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\container.Tests.ps1"; Parameters=@{creds=$creds}}
+    Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\container.Tests.ps1"
 }else{
     Write-Information -InformationAction Continue -MessageData "Invalid playbook selected"
 }
