@@ -1,3 +1,5 @@
+$creds = $args[0]
+
 # Get the target
 $target = Get-Content  "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
 
@@ -47,6 +49,7 @@ Describe "Test WinRM"{
     It 'Using credentials to remote endpoint should return positive result'{
         # Test WSMan with credentials
         $winrm = Test-WSMan -ComputerName $target -Credential $creds 
+        $winrm | Should -Not -BeNullOrEmpty
     }
 
     # Test the trusted hosts file
