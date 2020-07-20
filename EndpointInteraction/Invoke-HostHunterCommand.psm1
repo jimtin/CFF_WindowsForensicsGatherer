@@ -29,6 +29,9 @@ function Invoke-HostHunterCommand {
         $session = Get-PSSession -ComputerName $Target
 
         if ($session -eq $null){
+            # Add the Target to the TrustedHosts registry key
+            Set-Item WSMan:\localhost\Client\TrustedHosts $Target
+            # Create the session
             $session = New-PSSession -ComputerName $Target -Credential $creds
         }
 
