@@ -5,7 +5,7 @@ $netipaddress = Get-NetIPAddress | Where-Object {$_.InterfaceAlias -eq "vEtherne
 $netipaddress = $netipaddress | Where-Object {$_.AddressFamily -eq "IPv4"}
 # Turn it into a string
 $netipaddress = $netipaddress.ToString()
-$netipaddress = "127.0.0.1"
+$netipaddress = ($env:COMPUTERNAME).ToString()
 
 # Run the local host tests
 Invoke-Pester C:\Users\circleci\project\Tests\localHost.Tests.ps1
