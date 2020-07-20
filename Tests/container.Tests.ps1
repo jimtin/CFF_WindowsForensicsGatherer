@@ -12,8 +12,7 @@ $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
 $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
 Write-Host $trustedhosts
 
-$process = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process}
-Write-Host $process
+
 
 # Initial test to see if Pester is working
 Describe 'Basic Pester Test'{
@@ -84,6 +83,13 @@ Describe "Test credential access"{
     It "Invoke-Command should not work without changing the TrustedHosts registry key"{
         $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process} -ErrorAction SilentlyContinue
         $output | Should -BeNullOrEmpty
+    }
+
+    # If the TrustedHosts Registry is manually updated, the connection should work
+    It "Invoke-Command should work if the TrustedHosts Registry key is set to *"{
+        Set-Item WSMan:\localhost\Client\TrustedHosts *
+        $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process}
+        $output | Should -Not -BeNullOrEmpty
     }
 
 }

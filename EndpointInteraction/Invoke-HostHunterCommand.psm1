@@ -10,7 +10,9 @@ function Invoke-HostHunterCommand {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]$Scriptblock, 
-        [Parameter()]$Target
+        [Parameter(Mandatory=$true)]$Target,
+        [Parameter()]$ConnectionType = "Session",
+        [Parameter][switch]$DomainCommand
     )
 
     # Set up the output variable
@@ -21,16 +23,11 @@ function Invoke-HostHunterCommand {
         "Target" = $Target
     }
 
-    # Get the Data type of the connection
-    $targetdatataype = $Target.GetType()
-    $targetdatataype = $targetdatataype.Name
-    $output.Add("TargetDataType", $targetdatataype)
+    # Create a 
 
     # If the data type is a PSSession, the command can be passed straight into the session. This reduces the number of forensic artefacts from the framework for forming new connections
-    if($targetdatataype = "PSSession"){
-        $runcommand = Invoke-Command -Session $Target -ScriptBlock $Scriptblock
-        $output.Add("Outcome", $runcommand)
-    }
+    $runcommand = Invoke-Command -Session $Target -ScriptBlock $Scriptblock
+    $output.Add("Outcome", $runcommand)
     
     Write-Output $output
 }
