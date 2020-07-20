@@ -1,6 +1,6 @@
 # Get the IP of this endpoint
-$netipaddress = ipconfig 
-Write-Host $netipaddress
+$netipaddress = Get-NetIPAddress
+Write-Host $netipaddress | Format-List *
 $netipaddress = Get-NetIPAddress | Where-Object {$_.InterfaceAlias -eq "Ethernet"}
 $netipaddress = $netipaddress | Where-Object {$_.AddressFamily -eq "IPv4"}
 # Turn it into a string

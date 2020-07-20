@@ -30,13 +30,13 @@ function Invoke-HostHunterCommand {
 
         if ($session -eq $null){
             # Add the Target to the TrustedHosts registry key
-            Set-Item WSMan:\localhost\Client\TrustedHosts $Target
+            Set-Item WSMan:\localhost\Client\TrustedHosts $Target -Force
             # Create the session
             $session = New-PSSession -ComputerName $Target -Credential $creds
         }
 
         # Now run the Scriptblock against it
-        $runcommand = Invoke-Command -Session $Target -ScriptBlock $Scriptblock
+        $runcommand = Invoke-Command -Session $session -ScriptBlock $Scriptblock
         $output.Add("Outcome", $runcommand)
         
     }
