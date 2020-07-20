@@ -23,14 +23,21 @@ function Invoke-HostHunterCommand {
         "Target" = $Target
     }
 
-    # If connection type is a session, create the session
+    # If connection type is a session, check if the session exists, if not create it
     if($ConnectionType -eq "Session"){
-        $session = New-PSSession -ComputerName $Target -Credential $creds
+        # Check if the session already exists
+        $session = Get-PSSession -ComputerName $Target
+
+        if ($session -eq $null){
+            $session = New-PSSession -ComputerName $Target -Credential $creds
+        }
+
+        # Now run the Scriptblock against it
+        $runcommand = Invoke-Command -Session $Target -ScriptBlock $Scriptblock
+        $output.Add("Outcome", $runcommand)
+        
     }
 
     # If the data type is a PSSession, the command can be passed straight into the session. This reduces the number of forensic artefacts from the framework for forming new connections
-    $runcommand = Invoke-Command -Session $Target -ScriptBlock $Scriptblock
-    $output.Add("Outcome", $runcommand)
-    
     Write-Output $output
 }

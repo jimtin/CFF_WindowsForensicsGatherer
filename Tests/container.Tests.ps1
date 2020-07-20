@@ -87,7 +87,7 @@ Describe "Test credential access"{
 
     # If the TrustedHosts Registry is manually updated, the connection should work
     It "Invoke-Command should work if the TrustedHosts Registry key is set to *"{
-        Set-Item WSMan:\localhost\Client\TrustedHosts *
+        Set-Item WSMan:\localhost\Client\TrustedHosts * -Force
         $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process}
         $output | Should -Not -BeNullOrEmpty
     }
