@@ -12,7 +12,7 @@ function Invoke-HostHunterCommand {
         [Parameter(Mandatory=$true)]$Scriptblock, 
         [Parameter(Mandatory=$true)]$Target,
         [Parameter()]$ConnectionType = "Session",
-        [Parameter][switch]$DomainCommand
+        [Parameter()][switch]$Playbook
     )
 
     # Set up the output variable
