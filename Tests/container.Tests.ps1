@@ -12,6 +12,9 @@ $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
 $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
 Write-Host $trustedhosts
 
+$process = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process}
+Write-Host $process
+
 # Initial test to see if Pester is working
 Describe 'Basic Pester Test'{
     It 'A test should be true'{
