@@ -21,7 +21,7 @@ Describe 'Basic Pester Test'{
 Describe "Required files"{
     # Test that the module manifest exists
     It "Module manifest should exist"{
-        $content = Get-Content .\manifest.txt
+        $content = Get-Content C:\WindowsForensicGatherer\CFF_WindowsForensicsGatherer-master\manifest.txt
         $content | Should -Not -BeNullOrEmpty
     }
 }
