@@ -9,12 +9,6 @@ $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
 # Construct the Credential object
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
-$trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
-Write-Host $trustedhosts
-
-$ping = ping $target
-Write-Host $ping
-
 # Initial test to see if Pester is working
 Describe 'Basic Pester Test'{
     It 'A test should be true'{
