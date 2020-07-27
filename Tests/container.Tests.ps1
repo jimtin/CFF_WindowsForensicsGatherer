@@ -1,9 +1,9 @@
 # Get the password
 $upass = $env:UPASS
-Write-Host $upass
 
 # Get the target
-$target = $env:COMPUTERNAME
+$target = $env:TARGET
+Write-Host $target
 
 # Convert upass into secure string
 $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
