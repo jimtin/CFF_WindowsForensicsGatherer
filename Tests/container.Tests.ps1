@@ -74,7 +74,7 @@ Describe "Test credential access"{
         Set-Item WSMan:\localhost\Client\TrustedHosts * -Force
         $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process}
         $output | Should -Not -BeNullOrEmpty
-        Set-Item WSMan:\localhost\Client\TrustedHosts -
+        Set-Item WSMan:\localhost\Client\TrustedHosts - -Force
     }
 
 }
