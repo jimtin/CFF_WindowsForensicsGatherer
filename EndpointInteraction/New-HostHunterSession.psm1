@@ -20,6 +20,8 @@ function New-HostHunterSession{
         "Target" = $Target
     }
 
+    Write-Host "Creating Session"
+
     # Update the Trusted Hosts registry key for this target
     Set-Item WSMan:\localhost\Client\TrustedHosts $Target -Force
 

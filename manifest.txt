@@ -1,1 +1,1 @@
-.\EndpointInteraction\New-HostHunterSession.psm1
+C:\WindowsForensicGatherer\CFF_WindowsForensicsGatherer-master\EndpointInteraction\New-HostHunterSession.psm1
