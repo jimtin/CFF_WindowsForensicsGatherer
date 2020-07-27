@@ -1,10 +1,6 @@
-# Test that Pester exists
-$pester = Get-Module -ListAvailable -Name "Pester"
+# Load powershell modules
+$modules = Get-Content -Path .\manifest.txt
 
-if($pester -eq $null){
-    Write-Verbose "Downloading and installing Pester"
-    Import-Module -Name Pester
+foreach ($cmdlet in $modules){
+    Import-Module -Name $cmdlet -Force
 }
-
-# Make sure that Windows Remote Management is up and running
-

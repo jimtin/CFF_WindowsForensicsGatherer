@@ -3,7 +3,6 @@ $upass = $env:UPASS
 
 # Get the target
 $target = $env:TARGET
-Write-Host $target
 
 # Convert upass into secure string
 $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
@@ -20,22 +19,10 @@ Describe 'Basic Pester Test'{
 
 # Test to see if needed modules and files exist
 Describe "Required files"{
-    # Test for the Invoke-HostHunterCommand module
-    It 'Should Exist'{
-        "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\EndpointInteraction\Invoke-HostHunterCommand.psm1" |
-        Should -Exist
-    }
-
-    # Test for the Target.txt file
-    It 'Should Exist'{
-        "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\Tests\target.txt" |
-        Should -Exist
-    }
-
-    # Test for the hostname.txt file
-    It 'Should Exist'{
-        "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\Tests\hostname.txt" | 
-        Should -Exist
+    # Test that the module manifest exists
+    It "Module manifest should exist"{
+        $content = Get-Content .\manifest.txt
+        $content | Should -Not -BeNullOrEmpty
     }
 }
 
@@ -87,8 +74,39 @@ Describe "Test credential access"{
         Set-Item WSMan:\localhost\Client\TrustedHosts * -Force
         $output = Invoke-Command -ComputerName $target -Credential $creds -ScriptBlock{Get-Process}
         $output | Should -Not -BeNullOrEmpty
+        Set-Item WSMan:\localhost\Client\TrustedHosts -
     }
 
+}
+
+# Test the creation of a session
+Describe "HostHunterSession creation"{
+    # Check that module was loaded
+    It "Module should be loaded"{
+        Get-Module -Name "New-HostHunterSession" | Should -Exist
+    }
+
+    # Check that no current sessions exist
+    It "No current sessions should exist"{
+        Get-PSSession | Should -BeNullOrEmpty
+    }
+
+    # Run the New-HostHunterSession module and confirm it has returned true
+    It "Should create a session"{
+        $session = New-HostHunterSession -ComputerName $env:TARGET -Credential $creds
+        $session.SessionCreationOutcome | Should -Be $true
+    }
+
+    # A session should now have been created
+    It "A session should now exist"{
+        Get-PSSession | Should -Not -BeNullOrEmpty
+    }
+
+    # The trusted hosts registry key should have been updated with this target
+    It "Trusted hosts should be updated with current target"{
+        $trustedhosts = Get-Item WSMan:\localhost\Client\TrustedHosts
+        $trustedhosts | Should -Be $env:TARGET
+    }
 }
 
 
