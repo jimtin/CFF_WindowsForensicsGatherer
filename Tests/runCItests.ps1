@@ -1,6 +1,8 @@
 $username = $args[0]
 $password = $args[1]
 
+Write-Host $username
+
 # Get the IP of this endpoint
 $netipaddress = ($env:COMPUTERNAME).ToString()
 

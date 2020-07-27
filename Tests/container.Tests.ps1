@@ -1,7 +1,9 @@
-$upass = Get-Content "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\hostname.txt"
+# Get the password
+$upass = $env:UPASS
+Write-Host $upass
 
 # Get the target
-$target = Get-Content  "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
+$target = $env:COMPUTERNAME
 
 # Convert upass into secure string
 $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
