@@ -1,5 +1,8 @@
 # Get the password
 $upass = $env:UPASS
+# Convert to a string
+Write-Host $upass
+$upass = $upass.tostring()
 
 # Get the target
 $target = $env:TARGET
@@ -98,6 +101,7 @@ Describe "HostHunterSession creation"{
 
     # Check that module was loaded
     It "Module should be loaded"{
+        Import-Module "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\EndpointInteraction\New-HostHunterSession.psm1" -Force
         Get-Module -Name "New-HostHunterSession"
         Get-Module -Name "New-HostHunterSession" | Should -Exist
     }
