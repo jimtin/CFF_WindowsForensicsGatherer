@@ -7,13 +7,6 @@ $securestring = ConvertTo-SecureString -String $env:UPASS -AsPlainText -Force
 # Construct the Credential object
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
-# Load the HostHunter modules
-$modules = Get-Content C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\manifest.txt
-foreach ($cmdlet in $modules){
-    Write-Host $cmdlet
-    Import-Module -Name $cmdlet -Force
-}
-
 if($playbook -eq "CITests"){
     # Inform user of actions being taken
     Write-Information -InformationAction Continue -MessageData "CI Tests invoked"

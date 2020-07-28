@@ -11,6 +11,7 @@ $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
 # Load the HostHunter modules
+Write-Host "Importing HostHunter modules"
 $modules = Get-Content C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\manifest.txt
 foreach ($cmdlet in $modules){
     Write-Host $cmdlet
