@@ -7,6 +7,9 @@ $securestring = ConvertTo-SecureString -String $env:UPASS -AsPlainText -Force
 # Construct the Credential object
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
+# Load the HostHunter modules
+.\loadForensicsGatherer.ps1
+
 if($playbook -eq "CITests"){
     # Inform user of actions being taken
     Write-Information -InformationAction Continue -MessageData "CI Tests invoked"
