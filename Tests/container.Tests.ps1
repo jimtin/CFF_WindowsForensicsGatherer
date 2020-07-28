@@ -3,6 +3,7 @@ $upass = $env:UPASS
 
 # Get the target
 $target = $env:TARGET
+Write-Host $target
 
 # Convert upass into secure string
 $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
