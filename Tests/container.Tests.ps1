@@ -10,6 +10,13 @@ $securestring = ConvertTo-SecureString -String $upass -AsPlainText -Force
 # Construct the Credential object
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
+# Load the HostHunter modules
+$modules = Get-Content C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\manifest.txt
+foreach ($cmdlet in $modules){
+    Write-Host $cmdlet
+    Import-Module -Name $cmdlet -Force
+}
+
 # Initial test to see if Pester is working
 Describe 'Basic Pester Test'{
     It 'A test should be true'{
@@ -89,6 +96,7 @@ Describe "HostHunterSession creation"{
 
     # Check that module was loaded
     It "Module should be loaded"{
+        Get-Module -Name "New-HostHunterSession"
         Get-Module -Name "New-HostHunterSession" | Should -Exist
     }
 
