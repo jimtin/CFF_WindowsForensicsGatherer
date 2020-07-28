@@ -8,20 +8,20 @@ $securestring = ConvertTo-SecureString -String $env:UPASS -AsPlainText -Force
 [pscredential]$creds = New-Object System.Management.Automation.PSCredential($username, $securestring) 
 
 # Load the HostHunter modules
-C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\loadForensicsGatherer.ps1
+# Load powershell modules
+$modules = Get-Content C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\manifest.txt
+
+foreach ($cmdlet in $modules){
+    Write-Host $cmdlet
+    Import-Module -Name $cmdlet -Force
+}
 
 if($playbook -eq "CITests"){
     # Inform user of actions being taken
     Write-Information -InformationAction Continue -MessageData "CI Tests invoked"
 
-    # Write the Target information to the file
-    $target | Out-File "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\target.txt"
-
-    # Write the HostName to a file
-    $env:UPASS | Out-File "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\hostname.txt"
-
     # Invoke the test script
-    Invoke-Pester "C:\\WindowsForensicsGatherer\\CFF_WindowsForensicsGatherer-master\\Tests\\container.Tests.ps1"
+    Invoke-Pester "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\Tests\container.Tests.ps1"
 }else{
     Write-Information -InformationAction Continue -MessageData "Invalid playbook selected"
 }
