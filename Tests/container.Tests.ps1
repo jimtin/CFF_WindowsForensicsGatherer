@@ -81,6 +81,12 @@ Describe "Test credential access"{
 
 # Test the creation of a session
 Describe "HostHunterSession creation"{
+    # Check that the module file exists
+    It "New-HostHunterSession module file should exist"{
+        Test-Path -Path "C:\WindowsForensicsGatherer\CFF_WindowsForensicsGatherer-master\EndpointInteraction\New-HostHunterSession.psm1" |
+        Should -Be $true
+    }
+
     # Check that module was loaded
     It "Module should be loaded"{
         Get-Module -Name "New-HostHunterSession" | Should -Exist
